@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Masq-Sync ---</title>
+<link href="pfs.css" type="text/css" rel="stylesheet" />
+
+
+<!-- <script type="text/javascript" src="dist/crypto.min.js"></script> -->
+</head>
+<body >
+    <div class="container content" id="main-content">
+        <article>
+            <h1>PFS demo</h1>
+            <p>Please open this demo page on two browsers or two tabs and select a different user in each. For this demo Alice always initiates exchanges. </p>
+            <form>
+                <input type="radio" name="user" value="alice" checked> Alice   
+                <input type="radio" name="user" value="bob"> Bob <br>
+           </form>
+           <br>
+           <button class="button" type="button" id="init">Validate & generate RSA keys</button>
+            <h2>Process : </h2>
+
+
+            <ul>
+                <li>Exchange RSA keys : <br> The two entities exchange the long term RSA public keys.
+                   
+                </li>
+                <li>ECDHE Step 1:  <br> The two entities performs ECDHE to derive a common secret key. Each entity 1) generates an EC key pair, 
+                    <br> 2) Sign the public EC key 3) Send it 4) Verify the received EC key signature with the stored public RSA key.
+                </li>
+                <li>ECDHE Step 2:  <br> The two entities exchange a secret key en/decrypted with the common derived secret key
+                </li>
+               
+               
+
+                <table>
+
+                    <tr>
+                        <th> <button class="button" type="button" id="exchangeRSAKey">Exchange RSA public keys</button></th>
+                    </tr>
+                    <tr>
+                        <th> <button class="button" type="button" id="start_ecdh">Start ECDHE</button></th>
+                    </tr>
+                </table>
+                <h2>Results </h2>
+                <p>(some messages are received signals sent by masq-sync)</p>
+                <ul>
+                    <div id="validation"></div>
+                </ul>
+                <ul>
+                    <div id="RSAExchangeDone"></div>
+                </ul>
+                <ul>
+                    <div id="ECDHStep1"></div>
+                </ul>
+                <ul>
+                    <div id="ECDHStep2"></div>
+                </ul>
+               
+                <!-- <p>The read operation with one instance requires one setItem and one entire ooperation instead of 2. </p> -->
+        </article>
+</div>
+    <script type="text/javascript" src="../node_modules/masq-crypto/dist/MasqCrypto.js"></script>
+    <script type="text/javascript" src="../dist/MasqSync.js"></script>
+    <script type="text/javascript" src="./index.js"></script>
+</body>
+</html>

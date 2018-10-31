@@ -1,0 +1,64 @@
+{
+  "name": "pfs-demo-web-socket",
+  "version": "1.0.0",
+  "description": "A PFS demo",
+  "main": "dist/index.js",
+  "scripts": {
+    "browserify": "browserify ./dist/index.js --standalone MasqSync > dist/MasqSync.js",
+    "build": "babel src --presets env --out-dir dist/",
+    "server": "node dist/server.js",
+    "test": "jest test/*.test.js --runInBand --verbose --coverage --forceExit",
+    "watch": "jest --watch",
+    "prepublish": "npm run build",
+    "start": "concurrently \" npm run server\" \"npm run build && npm run browserify && http-server .\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leventdem/PFS-demo-web-socket.git"
+  },
+  "keywords": [
+    "PFS",
+    "ECDHE",
+    "crypto",
+    "encryption",
+    "asymmetric encryption",
+    "RSA",
+    "RSA-PSS",
+    "webcryptoAPI"
+  ],
+  "author": "Levent DEMIR",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/leventdem/PFS-demo-web-socket/issues"
+  },
+  "homepage": "https://github.com/leventdem/PFS-demo-web-socket#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-runtime": "^6.26.0",
+    "coveralls": "^3.0.2",
+    "socketcluster-server": "^14.3.1",
+    "standard": "^12.0.1",
+    "jest": "^23.6.0"
+  },
+  "dependencies": {
+    "browserify": "^16.2.3",
+    "concurrently": "^4.0.1",
+    "http-server": "^0.11.1",
+    "masq-common": "git+https://github.com/leventdem/masq-common.git",
+    "masq-crypto": "git+https://github.com/leventdem/masq-crypto.git",
+    "socketcluster-client": "^14.2.1"
+  },
+  "standard": {
+    "ignore": [
+      "dist"
+    ],
+    "env": [
+      "jest"
+    ]
+  },
+  "jest": {
+    "testURL": "http://localhost"
+  }
+}
